@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useTransition } from 'react';
 import './App.css';
 import data from './data';
 import {useState} from 'react';
 
-
 function App() {
-  let [clothes]=useState(data);
-  return ( 
+  let [clothes]=useState(data); 
+  return (
     <div className="shop">
       <nav className="shop-nav">
         <ul className="nav-list">
@@ -23,21 +22,13 @@ function App() {
 
         <section className="main-product">
           <ul className="product-listgroup">
-            <li className="product-list">
-              <img className='list' src={process.env.PUBLIC_URL+`/img/clothes_1.png`}></img>
-              <h2>{clothes[0].title}</h2>
-              <p>{clothes[0].content}</p>
-            </li>
-            <li className="product-list">
-              <img className='list' src={process.env.PUBLIC_URL+`/img/clothes_2.png`}></img>
-              <h2>{clothes[1].title}</h2>
-              <p>{clothes[1].content}</p>
-            </li>
-            <li className="product-list">
-              <img className='list' src={process.env.PUBLIC_URL+`/img/clothes_2.png`}></img>
-              <h2>{clothes[2].title}</h2>
-              <p>{clothes[2].content}</p>
-            </li>
+            {
+              clothes.map((a,i)=>{
+                return(
+                <ProductList clothes={clothes[i]} i={i}></ProductList>
+                ) 
+              })
+            }
           </ul>
         </section>
       </main>
@@ -45,5 +36,25 @@ function App() {
 
   );
 }
+
+function ProductList(props){
+  return(
+    <li className="product-list">
+          <img className='list' src={process.env.PUBLIC_URL+`/img/clothes_${props.i}.png`}></img>
+            <h2>{props.clothes.title}</h2>
+            <p>{props.clothes.content}</p>
+      </li>
+  );
+}
+
+// function ProductList(props){
+//   clothes.map((a,i)=>{
+//     return(
+//       <li className="product-list">
+//           <img className='list' src={process.env.PUBLIC_URL+`/img/clothes_${props.i}.png`}></img>
+//             <h2>{props.clothes[i].title}</h2>
+//             <p>{props.clothes[i].content}</p>
+//       </li>
+//     )
+//   })}
 export default App;
- 
