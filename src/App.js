@@ -2,6 +2,9 @@ import React, { useTransition } from 'react';
 import './App.css';
 import data from './data';
 import {useState} from 'react';
+import ProductList from './Component/ProductList';
+import {Routes, Route, Link} from 'react-router-dom'
+import detail from './Component/datail';
 
 function App() {
   let [clothes]=useState(data); 
@@ -17,11 +20,15 @@ function App() {
         </ul>
       </nav>
 
-      <main className="shop-main">
-        <img className='main-img' src={process.env.PUBLIC_URL+`/img/main_img.jpg`}></img>
+      <Routes>
+        <Route path="/" element={
+        <>
+          <Link to="/detail">상세페이지</Link>
+          <main className="shop-main">
+            <img className='main-img' src={process.env.PUBLIC_URL+`/img/main_img.jpg`}></img>
 
-        <section className="main-product">
-          <ul className="product-listgroup">
+            <section className="main-product">
+            <ul className="product-listgroup">
             {
               clothes.map((a,i)=>{
                 return(
@@ -29,23 +36,23 @@ function App() {
                 ) 
               })
             }
-          </ul>
-        </section>
-      </main>
+            
+            </ul>
+          </section>
+        </main>
+          
+      </>}></Route>
+
+        <Route path="/detail" element={detail()}></Route>
+      </Routes>
+
+      
     </div>
 
   );
 }
 
-function ProductList(props){
-  return(
-    <li className="product-list">
-          <img className='list' src={process.env.PUBLIC_URL+`/img/clothes_${props.i}.png`}></img>
-            <h2>{props.clothes.title}</h2>
-            <p>{props.clothes.content}</p>
-      </li>
-  );
-}
+
 
 // function ProductList(props){
 //   clothes.map((a,i)=>{
