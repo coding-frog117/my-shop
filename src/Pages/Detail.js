@@ -29,7 +29,7 @@ function Detail(props){
         ?<div className="alert alert-warning">2초 이내 구매시 할인</div>
         : null
         }
-        <YellowBtn bg="blue" onClick={setCount(count+1)}>{count}</YellowBtn>
+        <YellowBtn bg="blue" onClick={()=>{setCount(count+1)}}>{count}</YellowBtn>
         <YellowBtn bg="yellow"></YellowBtn>
         <YellowBtn bg="pink"></YellowBtn>
 
