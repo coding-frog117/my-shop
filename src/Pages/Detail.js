@@ -11,14 +11,19 @@ let YellowBtn= styled.button`
 
 function Detail(props){
     useEffect(()=>{
-        setTimeout(()=>{setAlert(false)},2000)
-    })
+        let timer=setTimeout(()=>{setAlert(false)},2000)
+
+        return (
+            ()=>{
+                clearTimeout(timer)
+            }
+        )
+    },[])
 
     let [count,setCount]=useState(0);
     let [alert,setAlert]=useState(true);  
     
     let {id}=useParams();
-    console.log(id);
     const found=props.clothes.find(index=>
         index.id==id
     )
@@ -38,6 +43,7 @@ function Detail(props){
         <div className="col-md-6">
         <img src={process.env.PUBLIC_URL+`/img/clothes_${id}.jpg`} width="100%" />
         </div>
+        
         <div className="col-md-6">
         <h4 className="pt-5">
             {found.title}
