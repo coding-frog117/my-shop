@@ -52,3 +52,22 @@ h1,h2,p{
 .list{
     width:150px;
 }
+
+.btn{
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    width:70px;
+    height:40px;
+    border-radius: 5px;
+}
+
+.btn0, .nav0{
+    background-color: pink;
+}
+.btn1, .nav1{
+    background-color:bisque
+}
+.btn2, .nav2{
+    background-color: aquamarine;
+}

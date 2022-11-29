@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
+import '../App.css'
 
 let YellowBtn= styled.button`
     background: ${props=>props.bg};
@@ -11,6 +12,8 @@ let YellowBtn= styled.button`
 
 function Detail(props){
     let [inputVal,setInputVal]=useState('');
+    let [tab,setTab]=useState(0)
+
     useEffect(()=>{
         let timer=setTimeout(()=>{setAlert(false)},2000)
 
@@ -65,8 +68,27 @@ function Detail(props){
         <button className="btn btn-danger">주문하기</button> 
         </div>
     </div>
+
+    <button className='btn btn0' onClick={()=>{
+        setTab(0)
+    }}>버튼0</button>
+    <button className='btn btn1' onClick={()=>{
+        setTab(1)
+    }}>버튼1</button>
+    <button className='btn btn2' onClick={()=>{
+        setTab(2)
+    }}>버튼2</button>
+    <Tab tab={tab}></Tab>
     </div> 
+
     )
 }
 
-export default Detail;
+function Tab({tab}){
+    return(
+    [<section className='nav0'>내용0</section>,
+    <section className='nav1'>내용1</section>,
+    <section className='nav2'>내용2</section>][tab]
+    )
+}
+export default Detail; 
