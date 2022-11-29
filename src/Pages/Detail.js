@@ -10,6 +10,7 @@ let YellowBtn= styled.button`
 `
 
 function Detail(props){
+    let [inputVal,setInputVal]=useState('');
     useEffect(()=>{
         let timer=setTimeout(()=>{setAlert(false)},2000)
 
@@ -20,8 +21,14 @@ function Detail(props){
         )
     },[])
 
+    useEffect(()=>{
+        if (isNaN(inputVal) === true){
+            alert("숫자만 입력 가능합니다")
+        }
+    },[inputVal])
+
     let [count,setCount]=useState(0);
-    let [alert,setAlert]=useState(true);  
+    let [myAlert,setAlert]=useState(true);  
     
     let {id}=useParams();
     const found=props.clothes.find(index=>
@@ -30,13 +37,18 @@ function Detail(props){
 
     return(
     <div className="container">
-        {alert==true
+        {myAlert==true
         ?<div className="alert alert-warning">2초 이내 구매시 할인</div>
         : null
         }
         <YellowBtn bg="blue" onClick={()=>{setCount(count+1)}}>{count}</YellowBtn>
         <YellowBtn bg="yellow"></YellowBtn>
         <YellowBtn bg="pink"></YellowBtn>
+        <input placeholder='입력해주세요' onChange={(e)=>{
+            // inputVal=e.target.value;
+            setInputVal(e.target.value);
+
+        }}></input>
 
     <Link to="/">홈</Link>
     <div className="row">

@@ -5,10 +5,13 @@ import {useState} from 'react';
 import ProductList from './Component/ProductList';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
 import Detail from './Pages/Detail';
+import axios from 'axios'
 
 function App() {
-  let [clothes]=useState(data); 
+  let [clothes,setClothes]=useState(data); 
   let navigate=useNavigate();
+  let [clickCount,setClickCount]=useState(1);
+  let [loading,setLoading]=useState(false);
 
   return (
     <div className="shop">
@@ -34,12 +37,57 @@ function App() {
         </ul>
       </nav>
 
+      <button onClick={()=>{
+        setClickCount(clickCount+1);
+        setLoading(true);
+        console.log(clickCount)
+
+        if (clickCount===1){
+          axios.get('https://codingapple1.github.io/shop/data2.json')
+        .then((result)=>{
+          let newArray=clothes.concat(result.data);
+          //let new Array=[...clothes, ...result.data]
+          setClothes(newArray);
+          // console.log(newArray);
+          setLoading(false);
+        })
+        .catch(()=>{
+          setLoading(false);
+          alert("상품을 불러오는데 실패했습니다");       
+        })
+        }
+
+        else if (clickCount===2){
+          axios.get('https://codingapple1.github.io/shop/data3.json')
+          .then((result)=>{
+            let newArray2=clothes.concat(result.data);
+            setClothes(newArray2);
+            setLoading(false);
+          })
+          .catch(()=>{
+            setLoading(false);
+            alert("상품을 불러오는데 실패했습니다");       
+          })
+        }
+        else if (clickCount>=3){
+            setLoading(false);
+            alert("마지막 페이지입니다")
+        }
+        // Promise.all([axios.get('url1'),axios.get('url2')])
+        // axios.post('url2', {name:'Song'})
+        // axios.get('url',)
+      }}>더보기</button>
+
       <Routes>
         <Route path="/" element={
         <>
           <Link to="/detail">상세페이지</Link>
           <main className="shop-main">
             <img className='main-img' src={process.env.PUBLIC_URL+`/img/main_img.jpg`}></img>
+
+            {loading===true
+              ? <p>로딩중입니다</p>
+              : null}
 
             <section className="main-product">
             <ul className="product-listgroup">
@@ -81,9 +129,6 @@ function Event(){
   </div>
   )
 }
-
-
-
 
 // function ProductList(props){
 //   clothes.map((a,i)=>{
