@@ -54,12 +54,9 @@ function Detail(props){
         }}></input>
 
     <Link to="/">홈</Link>
-    <div className="row">
-        <div className="col-md-6">
-        <img src={process.env.PUBLIC_URL+`/img/clothes_${id}.jpg`} width="100%" />
-        </div>
-        
-        <div className="col-md-6">
+    <div className='detail-cont'>
+        <img src={process.env.PUBLIC_URL+`/img/clothes_${id}.png`} className="detail-img" width="100%" />
+        <div className="datail-desc">
         <h4 className="pt-5">
             {found.title}
         </h4>
@@ -85,10 +82,19 @@ function Detail(props){
 }
 
 function Tab({tab}){
-    return(
+    let [fade,setFade]=useState('');
+
+    useEffect(()=>{
+        setTimeout(()=>{setFade('end')},100)
+        
+        return()=>{
+            setFade('')
+        }
+    },[tab])
+    return(<div className={`start ${fade}`}>{
     [<section className='nav0'>내용0</section>,
     <section className='nav1'>내용1</section>,
-    <section className='nav2'>내용2</section>][tab]
+    <section className='nav2'>내용2</section>][tab]}</div>
     )
 }
 export default Detail; 

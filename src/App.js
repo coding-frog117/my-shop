@@ -12,6 +12,7 @@ function App() {
   let navigate=useNavigate();
   let [clickCount,setClickCount]=useState(1);
   let [loading,setLoading]=useState(false);
+  let [fadeIn,setFadeIn]=useState('');
 
   return (
     <div className="shop">
@@ -105,8 +106,8 @@ function App() {
           
       </>}></Route>
 
-        <Route path="/detail" element={<Detail clothes={clothes}  ></Detail>}></Route>
-        <Route path="/detail/:id" element={<Detail clothes={clothes}></Detail>}></Route>
+        <Route path="/detail" element={<Detail clothes={clothes}></Detail>}></Route>
+        <Route path="/detail/:id" element={<Detail clothes={clothes} className={`start ${fadeIn}`}></Detail>}></Route>
         <Route path="*" element={
           <div>없는 페이지입니다. 404 error</div>
         }></Route>

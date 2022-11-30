@@ -29,7 +29,6 @@ h1,h2,p{
 }
 
 .main-img{
-    /* background-image: url(); **/
     background-size: cover;
     background-position: center;
     width:100%;
@@ -53,6 +52,15 @@ h1,h2,p{
     width:150px;
 }
 
+.detail-cont{
+    text-align: center;
+
+}
+.detail-img{
+    width: 150px;
+    height: 200px;
+}
+
 .btn{
     border: none;
     cursor: pointer;
@@ -70,4 +78,12 @@ h1,h2,p{
 }
 .btn2, .nav2{
     background-color: aquamarine;
+}
+
+.start{
+    opacity: 0;
+}
+.end{
+    opacity: 1 ;
+    transition: opacity 0.5s;
 }
