@@ -1,6 +1,7 @@
 import React, { useTransition } from 'react';
 import './App.css';
 import data from './data';
+import Cart from './Pages/Cart'
 import {useState} from 'react';
 import ProductList from './Component/ProductList';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
@@ -15,7 +16,7 @@ function App() {
   let [fadeIn,setFadeIn]=useState('');
 
   return (
-    <div className="shop">
+    <div className="shop"> 
       <nav className="shop-nav">
         <ul className="nav-list">
           <li className="header">
@@ -77,12 +78,14 @@ function App() {
         // Promise.all([axios.get('url1'),axios.get('url2')])
         // axios.post('url2', {name:'Song'})
         // axios.get('url',)
-      }}>더보기</button>
+      }}>더보기</button>  
 
-      <Routes>
+      <Routes>  
         <Route path="/" element={
         <>
-          <Link to="/detail">상세페이지</Link>
+          <Link to="/detail" element={
+            <Detail clothes={clothes}/>
+          }>상세페이지</Link >
           <main className="shop-main">
             <img className='main-img' src={process.env.PUBLIC_URL+`/img/main_img.jpg`}></img>
 
@@ -96,7 +99,7 @@ function App() {
               clothes.map((a,i)=>{
                 return(
                 <ProductList clothes={clothes[i]} i={i}></ProductList>
-                ) 
+                )  
               })
             }
             
@@ -106,16 +109,22 @@ function App() {
           
       </>}></Route>
 
-        <Route path="/detail" element={<Detail clothes={clothes}></Detail>}></Route>
+        <Route path="/detail" element={
+          
+          <Detail></Detail>
+          }/>
         <Route path="/detail/:id" element={<Detail clothes={clothes} className={`start ${fadeIn}`}></Detail>}></Route>
         <Route path="*" element={
           <div>없는 페이지입니다. 404 error</div>
         }></Route>
+        <Route path="/cart" element={<Cart></Cart>}></Route>
 
         <Route path="/event" element={<Event></Event>}>
           <Route path="one" element={<div>첫 주문시 양배추즙 서비스</div>}></Route>
           <Route path="two" element={<div>생일 기념 쿠폰 받기</div>}></Route>
         </Route>
+        
+        <Route path='/cart' element={<Cart></Cart>}/>
       </Routes> 
     
     </div>
@@ -131,14 +140,4 @@ function Event(){
   )
 }
 
-// function ProductList(props){
-//   clothes.map((a,i)=>{
-//     return(
-//       <li className="product-list">
-//           <img className='list' src={process.env.PUBLIC_URL+`/img/clothes_${props.i}.png`}></img>
-//             <h2>{props.clothes[i].title}</h2>
-//             <p>{props.clothes[i].content}</p>
-//       </li>
-//     )
-//   })}
 export default App;

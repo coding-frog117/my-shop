@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import '../App.css'
+
+import {Context1} from '../App';
 
 let YellowBtn= styled.button`
     background: ${props=>props.bg};
@@ -10,7 +12,8 @@ let YellowBtn= styled.button`
     padding:10px;
 `
 
-function Detail(props){
+  function Detail(props){
+
     let [inputVal,setInputVal]=useState('');
     let [tab,setTab]=useState(0)
 
@@ -34,9 +37,9 @@ function Detail(props){
     let [myAlert,setAlert]=useState(true);  
     
     let {id}=useParams();
-    const found=props.clothes.find(index=>
-        index.id==id
-    )
+    // const found=props.clothes.find(index=>
+    //     index.id==id
+    // )
 
     return(
     <div className="container">
@@ -58,10 +61,10 @@ function Detail(props){
         <img src={process.env.PUBLIC_URL+`/img/clothes_${id}.png`} className="detail-img" width="100%" />
         <div className="datail-desc">
         <h4 className="pt-5">
-            {found.title}
+            
         </h4>
-        <p>{found.content}</p>
-        <p>{found.price}</p>
+        <p></p>
+        <p></p>
         <button className="btn btn-danger">주문하기</button> 
         </div>
     </div>
@@ -81,7 +84,7 @@ function Detail(props){
     )
 }
 
-function Tab({tab}){
+function Tab({tab}){ 
     let [fade,setFade]=useState('');
 
     useEffect(()=>{
