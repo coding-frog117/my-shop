@@ -4,8 +4,6 @@ import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import '../App.css'
 
-import {Context1} from '../App';
-
 let YellowBtn= styled.button`
     background: ${props=>props.bg};
     color: ${props=>props.bg==="blue"? 'white' : 'black'};

@@ -1,6 +1,6 @@
 import React from "react"; 
 import { useDispatch, useSelector } from "react-redux";
-import { changeName,changeAge } from "../store";
+import { increaseCount } from "../store/itemSlice";
 
 function Cart(){
 
@@ -9,10 +9,6 @@ function Cart(){
     
     return(
         <div>
-            {stateList.user.name}의 장바구니
-            {stateList.user.age}살
-            <button onClick={()=>
-                dispatch(changeAge(100))}>버튼</button>
             <table>
                 <thead>
                     <tr>
@@ -23,16 +19,14 @@ function Cart(){
                     </tr>
                 </thead> 
                 <tbody>
-                    {stateList.item.map((a)=>{
+                    {stateList.item.map((a,i)=>{
                          return(
                             <tr key={a.id}>
                                 <td>{a.id}</td>
                                 <td>{a.name}</td>
-                                <t d>{a.count}</t>
+                                <td>{a.count}</td>
                                 <td>
-                                    <button onClick={()=>{
-                                        dispatch(changeName());
-                                    }}>+</button>
+                                    <button>+</button>
                                 </td>
                             </tr>
                         )
