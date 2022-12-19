@@ -26,7 +26,15 @@ function Cart(){
                                 <td>{a.name}</td>
                                 <td>{a.count}</td>
                                 <td>
-                                    <button>+</button>
+                                    <button onClick={(e)=>{
+                                        return(console.log(e.target.id));
+                                    
+                                        }}
+                                        // if (n) {
+                                        //     stateList[n].count}
+                                        // dispatch(increaseCount()) 
+
+                                    >+</button>
                                 </td>
                             </tr>
                         )

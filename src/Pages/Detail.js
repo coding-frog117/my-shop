@@ -13,7 +13,7 @@ let YellowBtn= styled.button`
   function Detail(props){
 
     let [inputVal,setInputVal]=useState('');
-    let [tab,setTab]=useState(0)
+    let [tab,setTab]=useState(0);
 
     useEffect(()=>{
         let timer=setTimeout(()=>{setAlert(false)},2000)

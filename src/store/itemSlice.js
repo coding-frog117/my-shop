@@ -8,7 +8,11 @@ let item=createSlice({
       ]
       ,
       increaseCount(state){
-        state.count=state.count+1;
+      //   let n=stateList.find((x)=>{
+      //     return(x.id===a.id)
+      // })
+      //   state.count=state.count+1;
+      //   stateList[n].count
     
     } 
   })  
